@@ -1,29 +1,28 @@
 package ph.edu.auf.rpgameandroid
 
 import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import android.widget.Button
 import android.widget.TextView
+import android.widget.Button
 import kotlin.random.Random
+import android.os.Bundle
 
 val Button.isChecked: Boolean
     get() = this.isSelected
 
-
 class MainActivity : AppCompatActivity() {
 
-    // Player and enemy initial HP
-    private var playerHP = 100
-    private var enemyHP = 100
-
-    private lateinit var rollButton: Button
     private lateinit var attackRadioButton: Button
     private lateinit var defendRadioButton: Button
     private lateinit var healRadioButton: Button
-    private lateinit var logTextView: TextView
+    private lateinit var rollButton: Button
+
+    private lateinit var rollResultTextView: TextView
     private lateinit var playerHPTextView: TextView
     private lateinit var enemyHPTextView: TextView
-    private lateinit var rollResultTextView: TextView
+    private lateinit var logTextView: TextView
+
+    private var playerHP = 100
+    private var enemyHP = 100
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,10 +31,11 @@ class MainActivity : AppCompatActivity() {
         attackRadioButton = findViewById(R.id.radioButton3)
         defendRadioButton = findViewById(R.id.radioButton)
         healRadioButton = findViewById(R.id.radioButton4)
-        logTextView = findViewById(R.id.textView)
+        rollResultTextView = findViewById(R.id.textView3)
         playerHPTextView = findViewById(R.id.textView12)
         enemyHPTextView = findViewById(R.id.textView7)
-        rollResultTextView = findViewById(R.id.textView3)
+        logTextView = findViewById(R.id.textView)
+
         // Set initial HP values in TextViews
         updateHPTextViews()
 
@@ -69,23 +69,25 @@ class MainActivity : AppCompatActivity() {
             "Attack" -> {
                 val damage = calculatePlayerAttack(rollResult)
                 enemyHP -= damage
-                logTextView.text = "You attacked for $damage damage!"
+                logTextView.text = "You Attacked For $damage Damage!"
             }
             "Defend" -> {
-                logTextView.text = "You defended against the enemy's attack."
+                val same = null
+                playerHP == same
+                logTextView.text = "You Defended Against The Enemy's Attack."
             }
             "Heal" -> {
                 val healing = calculatePlayerHeal(rollResult)
                 playerHP += healing
-                logTextView.text = "You healed for $healing HP."
+                logTextView.text = "You Healed For $healing HP."
             }
             else -> {
-                logTextView.text = "No action selected."
+                logTextView.text = "No Action Selected."
             }
         }
 
         if (enemyHP <= 0) {
-            logTextView.text = "You defeated the enemy!"
+            logTextView.text = "You Defeated The Enemy!"
             enemyHP = 0
         }
 
@@ -104,20 +106,20 @@ class MainActivity : AppCompatActivity() {
             "Attack" -> {
                 val damage = calculateEnemyAttack()
                 playerHP -= damage
-                logTextView.text = "Enemy attacked for $damage damage!"
+                logTextView.text = "Enemy Attacked For $damage Damage!"
             }
             "Defend" -> {
-                logTextView.text = "Enemy defended against your attack."
+                logTextView.text = "Enemy Defended Against Your Attack."
             }
             "Heal" -> {
                 val healing = calculateEnemyHeal()
                 enemyHP += healing
-                logTextView.text = "Enemy healed for $healing HP."
+                logTextView.text = "Enemy Healed For $healing HP."
             }
         }
 
         if (playerHP <= 0) {
-            logTextView.text = "You were defeated by the enemy!"
+            logTextView.text = "You Were Defeated By The Enemy!"
             playerHP = 0
         }
 
