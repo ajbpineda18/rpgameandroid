@@ -1,10 +1,10 @@
 package ph.edu.auf.rpgameandroid
 
-import android.os.Bundle
-import android.widget.Button
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import android.widget.TextView
+import android.widget.Button
 import kotlin.random.Random
+import android.os.Bundle
 
 class MainActivity : AppCompatActivity() {
 
@@ -54,34 +54,28 @@ class MainActivity : AppCompatActivity() {
             checkGameResult()
         }
     }
-
     private fun rollDice(): Int {
         return Random.nextInt(1, 7) // Rolls a 6-sided dice (1-6)
     }
-
     private fun playerAttack() {
         val damage = Random.nextInt(10, 21) // Player deals random damage between 10 and 20
         enemyHP -= damage
-        logGameAction("Player Attacked For $damage Aamage!")
+        logGameAction("Player Attacked For $damage Damage!")
     }
-
     private fun playerDefend() {
         val defense = Random.nextInt(5, 11) // Player defends and gains random defense between 5 and 10
         playerHP += defense
         logGameAction("Player Defended And Gained $defense HP!")
     }
-
     private fun playerHeal() {
         val healing = Random.nextInt(10, 21) // Player heals for random amount between 10 and 20
         playerHP += healing
         logGameAction("Player Healed For $healing HP!")
     }
-
     private fun chooseRandomEnemyAction(): String {
         val actions = arrayOf("Attack", "Defend", "Heal")
         return actions[Random.nextInt(actions.size)]
     }
-
     private fun performEnemyAction(action: String) {
         when (action) {
             "Attack" -> {
