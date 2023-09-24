@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
 
         rollButton.setOnClickListener {
             val rollResult = rollDice()
-            rollResultTextView.text = "      $rollResult"
+            rollResultTextView.text = "$rollResult"
 
             val enemyAction = chooseRandomEnemyAction()
             performEnemyAction(enemyAction)
@@ -68,7 +68,7 @@ class MainActivity : AppCompatActivity() {
     private fun playerDefend() {
         val defense = Random.nextInt(5, 11) // Player defends and gains random defense between 5 and 10
         playerHP += defense
-        logGameAction("Player Defended and Gained $defense HP!")
+        logGameAction("Player Defended And Gained $defense HP!")
     }
 
     private fun playerHeal() {
@@ -97,7 +97,7 @@ class MainActivity : AppCompatActivity() {
             "Heal" -> {
                 val healing = Random.nextInt(10, 21)
                 enemyHP += healing
-                logGameAction("Enemy Healed fFor $healing HP!")
+                logGameAction("Enemy Healed For $healing HP!")
             }
         }
     }
@@ -108,8 +108,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun updateHPTextViews() {
-        playerHPTextView.text = "Your HP: $playerHP"
-        enemyHPTextView.text = "Enemy HP: $enemyHP"
+        playerHPTextView.text = "YOUR HP: $playerHP"
+        enemyHPTextView.text = "ENEMY HP: $enemyHP"
     }
 
     private fun checkGameResult() {
